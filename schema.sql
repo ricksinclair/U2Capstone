@@ -82,7 +82,7 @@ INSERT INTO users (username, password, enabled) VALUES
 ("teamlead", "$2a$10$m8vwYtCsBTtA8M4UEQgzJe8U7Sn8.X/2jiIreEe2HLmR5CBxRh6IW", true),
 ("employee", "$2a$10$IOfTTl/L6oa/SwejHtaDQeYmt4oaGQluktg5viYhISyPj2v2OgnRe", true);
 
-INSERT INTO authories (username, authority) VALUES
+INSERT INTO authorities (username, authority) VALUES
 ("admin", "ROLE_ADMIN"),
 ("admin", "ROLE_MANAGER"),
 ("admin", "ROLE_TEAM_LEAD"),
