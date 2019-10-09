@@ -1,0 +1,554 @@
+openapi: 3.0.0
+info:
+  title: Cloud Game Store Service
+  description: Database services for Cloud Game Store Implementation.
+  version: 0.0.1
+servers: 
+  - url: http://localhost:7001
+    description: Level Up Service
+  - url: http://localhost:7002
+    description: Invoice Service
+  - url: http://localhost:7003
+    description: Inventory Service
+  - url: http://localhost:7004
+    description: Product Service
+  - url: http://localhost:7005
+    description: Customer Service
+  - url: http://localhost:8282
+    description: Admin Service
+  - url: http://localhost:8181
+    description: Retail Service
+
+paths:
+  /levelup:
+    post:
+      summary: add level up
+      description: add a new level up rewards membership by submmitting all fields except levelUpId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LevelUp'
+      responses:
+        '201':
+          description: Returns added level Up membership complete with levelUpId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LevelUp'
+
+            
+    put:
+      summary: update levelUp
+      description: update path used to update point total for levelUp Member
+      requestBody:
+          required: true 
+          content:
+              application/json:
+                schema:
+                     $ref: '#/components/schemas/LevelUp'                    
+      responses:
+        '201':
+          description: levelup successfully updated 
+          
+          
+  /levelup/{customerId}:      
+    get:
+      summary: get levelup
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get Level Up Information
+      responses:
+        '200':
+          description: Returns Level Up information for the requested Level Up Item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LevelUp"
+          
+    delete:
+      summary: delete levelup
+      parameters: 
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the level up associated with the requested customerId
+      responses:
+        '204':
+          description: level up successfully deleted.
+          
+  /product:
+    post:
+      summary: add product
+      description: add a new product by submmitting all fields except productId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Returns added product complete with productId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+
+            
+    put:
+      summary: update product
+      description: update path used to update point total for levelUp Member
+      requestBody:
+          required: true 
+          content:
+              application/json:
+                schema:
+                     $ref: '#/components/schemas/Product'                    
+      responses:
+        '201':
+          description: product successfully updated 
+          
+          
+  /product/{productId}:      
+    get:
+      summary: get product
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get product information
+      responses:
+        '200':
+          description: Returns product information for the requested product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+          
+    delete:
+      summary: delete product
+      parameters: 
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the product associated with the requested productId
+      responses:
+        '204':
+          description: product successfully deleted.
+          
+
+
+  /inventory:
+    post:
+      summary: add Inventory
+      description: add new inventory to be tracked by submmitting all fields except inventoryId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+      responses:
+        '201':
+          description: Returns added inventory complete with inventoryId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+
+            
+    put:
+      summary: update inventory
+      description: update path used to update point total for levelUp Member
+      requestBody:
+          required: true 
+          content:
+              application/json:
+                schema:
+                     $ref: '#/components/schemas/Inventory'                    
+      responses:
+        '201':
+          description: inventory successfully updated 
+          
+          
+  /inventory/{productId}:      
+    get:
+      summary: get inventory
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get product information
+      responses:
+        '200':
+          description: Returns inventory information for the requested product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Inventory"
+          
+    delete:
+      summary: delete inventory
+      parameters: 
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the inventory associated with the requested productId
+      responses:
+        '204':
+          description: inventory successfully deleted.
+          
+  /customer:
+    post:
+      summary: add customer
+      description: add a new customer by submmitting all fields except customerId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Returns added customer complete with customerId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+
+            
+    put:
+      summary: update customer
+      description: update path used to update point total for levelUp Member
+      requestBody:
+          required: true 
+          content:
+              application/json:
+                schema:
+                     $ref: '#/components/schemas/Customer'                    
+      responses:
+        '201':
+          description: customer successfully updated 
+          
+          
+  /customer/{customerId}:      
+    get:
+      summary: get customer
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get customer information
+      responses:
+        '200':
+          description: Returns customer information for the requested customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+          
+    delete:
+      summary: delete customer
+      parameters: 
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the customer associated with the requested customerId
+      responses:
+        '204':
+          description: customer successfully deleted.
+          
+  /invoice:
+    post:
+      summary: add invoice
+      description: add a new invoice by submmitting all fields except invoiceId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+      responses:
+        '201':
+          description: Returns added invoice complete with invoiceId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+
+            
+    put:
+      summary: update invoice
+      description: update path used to update point total for levelUp Member
+      requestBody:
+          required: true 
+          content:
+              application/json:
+                schema:
+                     $ref: '#/components/schemas/Invoice'                    
+      responses:
+        '201':
+          description: invoice successfully updated 
+          
+          
+  /invoice/{invoiceId}:      
+    get:
+      summary: get invoice
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get invoice information
+      responses:
+        '200':
+          description: Returns invoice information for the requested invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+          
+    delete:
+      summary: delete product
+      parameters: 
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the invoice associated with the requested invoiceId
+      responses:
+        '204':
+          description: Invoice successfully deleted.
+          
+  /invoiceitem:
+    post:
+      summary: add invoice item
+      description: add a new invoiceitem by submmitting all fields except invoiceItemId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItem'
+      responses:
+        '201':
+          description: Returns added invoice item complete with invoiceItemId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceItem'
+
+            
+    put:
+      summary: update invoice item
+      description: update path used to update invoice item
+      requestBody:
+          required: true 
+          content:
+              application/json:
+                schema:
+                     $ref: '#/components/schemas/InvoiceItem'                    
+      responses:
+        '201':
+          description: product successfully updated 
+          
+          
+  /invoiceitem/{invoiceItemId}:      
+    get:
+      summary: get invoice item
+      parameters:
+        - name: invoiceItemId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get invoice item information
+      responses:
+        '200':
+          description: Returns invoice item  information for the requested invoice item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceItem"
+          
+    delete:
+      summary: delete invoice item
+      parameters: 
+        - name: invoiceItemId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the invoice item associated with the requested invoiceItemId
+      responses:
+        '204':
+          description: invoice item successfully deleted.
+          
+    
+
+components:
+  schemas:
+    Product:
+      properties:
+        productId:
+          type: integer
+        productName:
+          type: string
+        productDescription:
+          type: string
+        listPrice: 
+          type: number
+        unitCost: 
+          type: number
+
+
+      required: 
+        - productName
+        - productDescription
+        - listPrice
+        - unitCost
+
+
+    Inventory:
+      properties:
+        inventoryId: 
+          type: integer
+        productId:
+          type: integer
+        quantity:
+          type: integer
+      
+      
+      required: 
+        - productId
+        - quantity
+       
+       
+       
+       
+       
+       
+       
+    Customer:
+      properties:
+        customerId: 
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        zip:
+          type: string
+        email: 
+          type: string
+        phone:
+          type: string
+          
+      
+      
+      required: 
+        - firstName
+        - lastName
+        - street
+        - city
+        - zip
+        - email
+        - phone
+        
+    Invoice:
+      properties:
+        invoiceId: 
+          type: integer
+        customerId:
+          type: integer
+        purchaseDate:
+          type: string
+          
+      required: 
+        - customerId
+        - purchaseDate
+        
+    InvoiceItem:
+      properties:
+        invoiceItemId:
+          type: integer
+        invoiceId:
+          type: integer
+        inventoryId:
+          type: integer
+        quantity:
+          type: integer
+        unitPrice:
+          type: number
+          
+      required: 
+        - invoiceId
+        - inventoryId
+        - quantity
+        - unitPrice
+        
+    LevelUp:
+      properties:
+        levelUpId:
+          type: integer
+        customerId:
+          type: integer
+        points:
+          type: integer
+        memberDate:
+          type: string
+          
+      required: 
+        - customerId
+        - points
+        - memberDate
+       
+       
+       
+       
+       
+       
+       
+       
+    InvoiceViewModel:
+      properties:
+        invoiceId: 
+          type: integer
+        customerId:
+          type: integer
+        purchaseDate:
+          type: string
+        invoiceItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+      
+
+        
+        
