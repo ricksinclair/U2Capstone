@@ -53,22 +53,22 @@ paths:
 
 
   /invoice/{invoiceId}:
-     get:
-       summary: get invoice
-       parameters:
-         - name: invoiceId
-           in: path
-           required: true
-           schema:
-             type: integer
-       description: Get invoice information
-       responses:
-         '200':
-           description: Returns invoice information for the requested invoice
-           content:
-             application/json:
-               schema:
-                 $ref: "#/components/schemas/Invoice"
+    get:
+      summary: get invoice
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get invoice information
+      responses:
+        '200':
+          description: Returns invoice information for the requested invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
 
     delete:
       summary: delete product
@@ -83,7 +83,7 @@ paths:
         '204':
           description: Invoice successfully deleted.
 
-  /invoiceitem:
+  /invoiceItem:
     post:
       summary: add invoice item
       description: add a new invoiceitem by submmitting all fields except invoiceItemId.
@@ -102,30 +102,30 @@ paths:
                 $ref: '#/components/schemas/InvoiceItem'
 
 
-     put:
-       summary: update invoice item
-       description: update path used to update invoice item
-       requestBody:
-         required: true
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/InvoiceItem'
-       responses:
-         '201':
-           description: product successfully updated
+    put:
+      summary: update invoice item
+      description: update path used to update invoice item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceItem'
+      responses:
+        '201':
+          description: product successfully updated
 
-     get:
-       summary: Retrieves all the entries for invoice items
-       responses:
-         '200':
-           description: A list of invoice item objects
-           content:
-             application/json:
-               schema:
-                 type: array
-                 items:
-                   $ref: "#/components/schemas/InvoiceItem"
+    get:
+      summary: Retrieves all the entries for invoice items
+      responses:
+        '200':
+          description: A list of invoice item objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InvoiceItem"
 
   /invoiceItemsByInvoiceId/{invoiceId}:
     get:
@@ -146,23 +146,23 @@ paths:
                 items:
                   $ref: "#/components/schemas/InvoiceItem"
 
-   /invoiceitem/{invoiceItemId}:
-     get:
-       summary: get invoice item
-       parameters:
-         - name: invoiceItemId
-           in: path
-           required: true
-           schema:
-             type: integer
-       description: Get invoice item information
-       responses:
-         '200':
-           description: Returns invoice item information for the requested invoice item
-           content:
-             application/json:
-               schema:
-                 $ref: "#/components/schemas/InvoiceItem"
+  /invoiceItem/{invoiceItemId}:
+    get:
+      summary: get invoice item
+      parameters:
+        - name: invoiceItemId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get invoice item information
+      responses:
+        '200':
+          description: Returns invoice item information for the requested invoice item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceItem"
 
     delete:
       summary: delete invoice item
@@ -208,16 +208,3 @@ components:
         - inventoryId
         - quantity
         - unitPrice
-
-    InvoiceViewModel:
-      properties:
-        invoiceId:
-          type: integer
-        customerId:
-          type: integer
-        purchaseDate:
-          type: string
-        invoiceItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceItem'
