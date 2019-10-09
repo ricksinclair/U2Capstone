@@ -31,9 +31,7 @@ pipeline {
         stage('test') {
             steps {
               sh '''
-                 cd cloud-game-store-customer-service
-                 ./mvnw test
-	         cd ./cloud-game-store-customer-service
+     	         cd ./cloud-game-store-customer-service
                  ./mvnw test
                  cd ../cloud-game-store-admin
                  ./mvnw test
@@ -60,7 +58,7 @@ pipeline {
               sh '''
                  
 
-        	 cd cloud-game-store-customer-service
+        	 cd ./cloud-game-store-customer-service
                  ./mvnw -DskipTests install
                  cd ../cloud-game-store-admin
                  ./mvnw -DskipTests install
