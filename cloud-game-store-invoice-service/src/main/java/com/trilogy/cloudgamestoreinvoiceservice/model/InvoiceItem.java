@@ -21,6 +21,29 @@ public class InvoiceItem {
     @NotNull
     private BigDecimal unitPrice;
 
+    public InvoiceItem() {
+    }
+
+    public InvoiceItem(@Digits(integer = 11, fraction = 0) @NotNull int invoiceId, @Digits(integer = 11,
+            fraction = 0) @NotNull int inventoryId, @Digits(integer = 11, fraction = 0) @NotNull int quantity,
+                       @Digits(integer = 5, fraction = 5) @NotNull BigDecimal unitPrice) {
+        this.invoiceId = invoiceId;
+        this.inventoryId = inventoryId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+
+    public InvoiceItem(int invoiceItemId, @Digits(integer = 11, fraction = 0) @NotNull int invoiceId,
+                       @Digits(integer = 11, fraction = 0) @NotNull int inventoryId,
+                       @Digits(integer = 11, fraction = 0) @NotNull int quantity, @Digits(integer = 5, fraction = 5)
+                       @NotNull BigDecimal unitPrice) {
+        this.invoiceItemId = invoiceItemId;
+        this.invoiceId = invoiceId;
+        this.inventoryId = inventoryId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+
     public int getInvoiceItemId() {
         return invoiceItemId;
     }

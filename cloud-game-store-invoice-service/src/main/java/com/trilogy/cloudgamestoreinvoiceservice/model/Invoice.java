@@ -14,6 +14,20 @@ public class Invoice {
     @NotNull
     private LocalDate purchaseDate;
 
+    public Invoice() {
+    }
+
+    public Invoice(@Digits(integer = 11, fraction = 0) @NotNull int customerId, @NotNull LocalDate purchaseDate) {
+        this.customerId = customerId;
+        this.purchaseDate = purchaseDate;
+    }
+
+    public Invoice(int invoiceId, @Digits(integer = 11, fraction = 0) @NotNull int customerId, @NotNull LocalDate purchaseDate) {
+        this.invoiceId = invoiceId;
+        this.customerId = customerId;
+        this.purchaseDate = purchaseDate;
+    }
+
     public int getInvoiceId() {
         return invoiceId;
     }
