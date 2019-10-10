@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class LevelUp {
-    
+
     private int levelUpId;
     @Digits(integer = 11, fraction = 0)
     @NotNull
