@@ -4,11 +4,15 @@ import com.trilogy.cloudgamestoreinventoryservice.model.Inventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
+
 @Component
 public class ServiceLayer {
+
     private InventoryDao inventoryDao;
+
     @Autowired
     public ServiceLayer(InventoryDao inventoryDao) {this.inventoryDao = inventoryDao;}
+
     /*************************************************
      * Inventory Service API
      *************************************************/

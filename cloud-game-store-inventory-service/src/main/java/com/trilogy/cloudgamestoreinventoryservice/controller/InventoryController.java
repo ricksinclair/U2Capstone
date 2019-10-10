@@ -27,7 +27,7 @@ public class InventoryController {
      */
     @PostMapping(value = "/inventory")
     @ResponseStatus(HttpStatus.CREATED)
-    public Inventory saveInventory(@Valid Inventory inventory) {
+    public Inventory saveInventory(@RequestBody @Valid Inventory inventory) {
         return serviceLayer.saveInventory(inventory);
     }
 
@@ -37,7 +37,7 @@ public class InventoryController {
      */
     @PutMapping(value = "/inventory")
     @ResponseStatus(HttpStatus.OK)
-    public void updateInventory(@Valid Inventory inventory) {
+    public void updateInventory(@RequestBody @Valid Inventory inventory) {
         serviceLayer.updateInventory(inventory);
     }
 

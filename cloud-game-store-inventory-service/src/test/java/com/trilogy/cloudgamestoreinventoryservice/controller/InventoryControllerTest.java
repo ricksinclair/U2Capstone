@@ -14,7 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,13 +34,22 @@ public class InventoryControllerTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private final Inventory INVENTORY_TO_SAVE = new Inventory(1,100);
-    private final Inventory SAVED_INVENTORY = new Inventory(1,1,100);
+    private static final Inventory INVENTORY_TO_SAVE = new Inventory(1,100);
+    private static final Inventory SAVED_INVENTORY = new Inventory(1,1,100);
+    private static final int INVENTORY_ID = 2;
+
+    private static final Inventory SAVED_INVENTORY_2 = new Inventory(2,2,222);
+    private static final List<Inventory> SAVED_INVENTORIES = new ArrayList<>();
 
     @Before
     public void setUp() {
 
+        SAVED_INVENTORIES.add(SAVED_INVENTORY);
+        SAVED_INVENTORIES.add(SAVED_INVENTORY_2);
+
         when(serviceLayer.saveInventory(INVENTORY_TO_SAVE)).thenReturn(SAVED_INVENTORY);
+        when(serviceLayer.fetchAllInventories()).thenReturn(SAVED_INVENTORIES);
+        when(serviceLayer.fetchInventory(INVENTORY_ID)).thenReturn(SAVED_INVENTORY_2);
     }
 
     @Test
@@ -54,10 +67,24 @@ public class InventoryControllerTest {
     }
 
     @Test
-    public void getAllInventories() {
+    public void getAllInventories() throws Exception{
+
+        String expectedJsonOutput = mapper.writeValueAsString(SAVED_INVENTORIES);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/inventory")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().json(expectedJsonOutput));
     }
 
     @Test
-    public void getInventory() {
+    public void getInventory() throws Exception{
+
+        String expectedJsonOutput = mapper.writeValueAsString(SAVED_INVENTORY_2);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/inventory/{inventoryId}", INVENTORY_ID))
+                .andDo(print()).andExpect(content().json(expectedJsonOutput));
     }
+
+    //Delete and update placeholders
 }
