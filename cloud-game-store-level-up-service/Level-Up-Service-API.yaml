@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: Cloud Game Store Service - Level Up Service
+  description: Level Up service for Cloud Game Store Implementation.
+  version: 0.0.1
+servers:
+  - url: http://localhost:7001
+    description: Level Up Service
+
+paths:
+  /levelUp:
+    post:
+      summary: add level up entry
+      description: add a new level up entry by submmitting all fields except level up ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LevelUp'
+      responses:
+        '201':
+          description: Returns added level up entry complete with Id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LevelUp'
+
+    put:
+      summary: update level up entry
+      description: update path used to update leve up entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LevelUp'
+      responses:
+        '201':
+          description: level up successfully updated
+
+    get:
+      summary: Retrieves all the entries for level up
+      responses:
+        '200':
+          description: A list of level up objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LevelUp"
+
+
+  /levelUp/{levelUpId}:
+    get:
+      summary: get level up entry
+      parameters:
+        - name: levelUpId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get level up entry information
+      responses:
+        '200':
+          description: Returns level up entry information for the requested levl up ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LevelUp"
+
+    delete:
+      summary: delete inventory
+      parameters:
+        - name: levelUpId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the level up entry associated with the requested level up ID
+      responses:
+        '204':
+          description: level up successfully deleted.
+
+components:
+  schemas:
+    LevelUp:
+      properties:
+        levelUpId:
+          type: integer
+        customerId:
+          type: integer
+        points:
+          type: integer
+        memberDate:
+          type: string
+      required:
+        - customerId
+        - points
+        - memberDate
