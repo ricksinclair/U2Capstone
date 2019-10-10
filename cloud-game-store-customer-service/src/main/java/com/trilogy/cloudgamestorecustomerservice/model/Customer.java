@@ -28,6 +28,26 @@ public class Customer {
 
     }
 
+    public Customer(int customerId, @NotEmpty(message = "Must include firstName") String firstName, @NotEmpty(message = "Must include lastName") String lastName, @NotEmpty(message = "Must include street") String street, @NotEmpty(message = "must include city") String city, @NotEmpty(message = "Must include zip code") String zip, @NotEmpty(message = "Must include email") String email, @NotEmpty(message = "Must include phone") String phone) {
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+        this.email = email;
+        this.phone = phone;
+    }
+    public Customer(@NotEmpty(message = "Must include firstName") String firstName, @NotEmpty(message = "Must include lastName") String lastName, @NotEmpty(message = "Must include street") String street, @NotEmpty(message = "must include city") String city, @NotEmpty(message = "Must include zip code") String zip, @NotEmpty(message = "Must include email") String email, @NotEmpty(message = "Must include phone") String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+        this.email = email;
+        this.phone = phone;
+    }
+
     public int getCustomerId() {
         return customerId;
     }
