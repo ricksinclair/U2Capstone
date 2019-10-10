@@ -10,19 +10,19 @@ pipeline {
                  ./mvnw -DskipTests clean compile
 		 cd ../cloud-game-store-admin
                  ./mvnw -DskipTests clean compile
-		 cd ../cloud-game-store-eureka
+		 cd ./cloud-game-store-eureka
                  ./mvnw -DskipTests clean compile
-		 cd ../cloud-game-store-config
+		 cd ./cloud-game-store-config
                  ./mvnw -DskipTests clean compile
-		 cd ../cloud-game-store-inventory-service
+		 cd ./cloud-game-store-inventory-service
                  ./mvnw -DskipTests clean compile
-		 cd ../cloud-game-store-invoice-service
+		 cd ./cloud-game-store-invoice-service
                  ./mvnw -DskipTests clean compile
-		 cd ../cloud-game-store-level-up-service
+		 cd ./cloud-game-store-level-up-service
                  ./mvnw -DskipTests clean compile
-		 cd ../cloud-game-store-product-service
+		 cd ./cloud-game-store-product-service
                  ./mvnw -DskipTests clean compile
-		 cd ../cloud-game-store-retail
+		 cd ./cloud-game-store-retail
                  ./mvnw -DskipTests clean compile
               '''
             }

@@ -6,6 +6,8 @@ pipeline {
         stage('build') {
             steps {
               sh '''
+		 cd ./cloud-game-store-config
+
                  ./mvnw -DskipTests clean compile
               '''
             }
@@ -14,6 +16,8 @@ pipeline {
         stage('test') {
             steps {
               sh '''
+		 cd ./cloud-game-store-config
+
 
                  ./mvnw test
               '''
@@ -23,6 +27,8 @@ pipeline {
         stage('deliver') {
             steps {
               sh '''
+		 cd ./cloud-game-store-config
+
                  ./mvnw -DskipTests install
               '''
             }
