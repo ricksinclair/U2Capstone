@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  title: Cloud Game Store Service - Inventory Service
+  description: Inventory service for Cloud Game Store Implementation.
+  version: 0.0.1
+servers:
+  - url: http://localhost:7003
+    description: Inventory Service
+
+paths:
+  /inventory:
+    post:
+      summary: add inventory
+      description: add a new inventory by submmitting all fields except inventoryId.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+      responses:
+        '201':
+          description: Returns added inventory complete with inventoryId.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+
+    put:
+      summary: update inventory
+      description: update path used to update inventory entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+      responses:
+        '201':
+          description: inventory successfully updated
+
+    get:
+      summary: Retrieves all the entries for inventory
+      responses:
+        '200':
+          description: A list of inventory objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Inventory"
+
+
+  /inventory/{inventoryId}:
+    get:
+      summary: get inventory
+      parameters:
+        - name: inventoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Get Inventory information
+      responses:
+        '200':
+          description: Returns inventory information for the requested inventory ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Inventory"
+
+    delete:
+      summary: delete inventory
+      parameters:
+        - name: inventoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: deletes the inventory associated with the requested inventory ID
+      responses:
+        '204':
+          description: Inventory successfully deleted.
+
+components:
+  schemas:
+    Inventory:
+      properties:
+        inventoryId:
+          type: integer
+        productId:
+          type: integer
+        quantity:
+          type: integer
+      required:
+        - productId
+        - quantity
