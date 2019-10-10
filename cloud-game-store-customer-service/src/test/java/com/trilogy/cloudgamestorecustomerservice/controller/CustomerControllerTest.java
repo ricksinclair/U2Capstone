@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -96,5 +97,28 @@ public class CustomerControllerTest {
                 .andExpect(content().json(expectedJsonOutput))
         ;
     }
+
+
+    @Test
+    public void getAllCustomers() throws Exception{
+        String expectedJsonOutput = mapper.writeValueAsString(CUSTOMER_LIST);
+        mockMvc.perform(MockMvcRequestBuilders.get("/customer")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().json(expectedJsonOutput));
+    }
+
+
+    @Test
+    public void fetchOneCustomer() throws Exception{
+        String expectedJsonOutput = mapper.writeValueAsString(SAVED_CUSTOMER_1);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/customer/{customerId}", CUSTOMER_ID))
+                        .andDo(print()).andExpect(content().json(expectedJsonOutput));
+
+
+
+    }
+
+
 
 }
