@@ -1,5 +1,4 @@
-package com.trilogy.cloudgamestorelevelupqueueconsumer.util.messages;
-
+package com.trilogy.cloudgamestoreretail.util.messages;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
