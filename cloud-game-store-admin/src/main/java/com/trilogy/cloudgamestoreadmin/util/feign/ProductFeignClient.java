@@ -31,4 +31,8 @@ public interface ProductFeignClient {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteProduct(@PathVariable int productId);
 
+    @RequestMapping(value = "/product/Invoice/{invoiceId}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+     List<Product> getProductsByInvoiceId(@PathVariable int invoiceId);
+
 }
