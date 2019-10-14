@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -75,5 +76,11 @@ public class InvoiceController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteInvoice(@PathVariable int invoiceId) {
         serviceLayer.deleteInvoice(invoiceId);
+    }
+
+    @GetMapping(value = "/invoice/customer/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+     List<Invoice> fetchInvoicesByCustomerId(@PathVariable int customerId) {
+        return serviceLayer.fetchAllInvoicesByCustomerId(customerId);
     }
 }

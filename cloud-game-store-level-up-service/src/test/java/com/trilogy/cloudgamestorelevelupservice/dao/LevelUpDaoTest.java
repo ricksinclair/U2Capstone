@@ -43,6 +43,10 @@ public class LevelUpDaoTest {
         //Asserts that level up retrieved is the same as level up previously saved
         assertEquals(levelUp, retrieveLevelUp);
 
+        //Tests Get by customer ID
+        LevelUp customerIdRetreivedLevelUp = levelUpDao.getLevelUpByCustomerId(levelUp.getCustomerId());
+        assertEquals(levelUp, customerIdRetreivedLevelUp);
+
         //Add a second Level up to database
         LevelUp levelUp1 = new LevelUp(2, 200, LocalDate.now());
         levelUp1 = levelUpDao.addLevelUp(levelUp1);

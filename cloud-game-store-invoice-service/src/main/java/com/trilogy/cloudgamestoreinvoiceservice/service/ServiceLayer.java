@@ -126,4 +126,8 @@ public class ServiceLayer {
     public void deleteInvoiceItem(int invoiceItemId) {
         invoiceItemDao.deleteInvoiceItem(invoiceItemId);
     }
+
+    public List<Invoice> fetchAllInvoicesByCustomerId(int customerId) {
+        return invoiceDao.getAllInvoiceByCustomerId(customerId);
+    }
 }

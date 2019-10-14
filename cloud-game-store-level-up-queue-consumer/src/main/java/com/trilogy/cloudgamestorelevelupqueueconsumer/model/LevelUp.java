@@ -1,6 +1,12 @@
 package com.trilogy.cloudgamestorelevelupqueueconsumer.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.trilogy.cloudgamestorelevelupqueueconsumer.serializers.LocalDateSerializer;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -14,6 +20,7 @@ public class LevelUp {
     @Digits(integer = 11, fraction = 0)
     @NotNull
     private int points;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate memberDate;
 
     public LevelUp() {

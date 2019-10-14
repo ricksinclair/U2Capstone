@@ -1,5 +1,7 @@
 package com.trilogy.cloudgamestoreretail.util.messages;
 
+import com.trilogy.cloudgamestoreretail.model.LevelUp;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -14,23 +16,18 @@ public class LevelUpEntry {
     @Digits(integer = 11, fraction = 0)
     @NotNull
     private int points;
-    private LocalDate memberDate;
+    private String memberDate;
 
     public LevelUpEntry() {
     }
 
-    public LevelUpEntry(@Digits(integer = 11, fraction = 0) @NotNull int customerId, @Digits(integer = 11, fraction = 0) @NotNull int points, LocalDate memberDate) {
-        this.customerId = customerId;
-        this.points = points;
-        this.memberDate = memberDate;
+    public LevelUpEntry(LevelUp levelUp) {
+        this.levelUpId = levelUp.getLevelUpId();
+        this.customerId = levelUp.getCustomerId();
+        this.memberDate = levelUp.getMemberDate().toString();
+        this.points = levelUp.getPoints();
     }
 
-    public LevelUpEntry(int levelUpId, @Digits(integer = 11, fraction = 0) @NotNull int customerId, @Digits(integer = 11, fraction = 0) @NotNull int points, LocalDate memberDate) {
-        this.levelUpId = levelUpId;
-        this.customerId = customerId;
-        this.points = points;
-        this.memberDate = memberDate;
-    }
 
     public int getLevelUpId() {
         return levelUpId;
@@ -56,11 +53,11 @@ public class LevelUpEntry {
         this.points = points;
     }
 
-    public LocalDate getMemberDate() {
+    public String getMemberDate() {
         return memberDate;
     }
 
-    public void setMemberDate(LocalDate memberDate) {
+    public void setMemberDate(String memberDate) {
         this.memberDate = memberDate;
     }
 

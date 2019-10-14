@@ -1,11 +1,18 @@
 package com.trilogy.cloudgamestorelevelupservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.trilogy.cloudgamestorelevelupservice.serializers.LocalDateDeserializer;
+import com.trilogy.cloudgamestorelevelupservice.serializers.LocalDateSerializer;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class LevelUp {
+public class LevelUp implements Serializable {
 
     private int levelUpId;
     @Digits(integer = 11, fraction = 0)
@@ -14,6 +21,7 @@ public class LevelUp {
     @Digits(integer = 11, fraction = 0)
     @NotNull
     private int points;
+    //@JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate memberDate;
 
     public LevelUp() {

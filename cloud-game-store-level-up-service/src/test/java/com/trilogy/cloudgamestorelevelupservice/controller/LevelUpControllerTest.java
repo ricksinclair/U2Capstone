@@ -49,6 +49,7 @@ public class LevelUpControllerTest {
     private static final List<LevelUp> SAVED_LEVEL_UPS = new ArrayList<>();
 
     private static final int LEVEL_UP_ID = 1;
+    private static final int CUSTOMER_ID = 1;
 
     @Before
     public void setUp() {
@@ -68,6 +69,7 @@ public class LevelUpControllerTest {
         when(serviceLayer.saveLevelUp(LEVEL_UP_TO_SAVE)).thenReturn(SAVED_LEVEL_UP);
         when(serviceLayer.fetchAllLevelUp()).thenReturn(SAVED_LEVEL_UPS);
         when(serviceLayer.fetchLevelUp(LEVEL_UP_ID)).thenReturn(SAVED_LEVEL_UP);
+        when(serviceLayer.fetchLevelUpByCustomerId(CUSTOMER_ID)).thenReturn(SAVED_LEVEL_UP);
 
     }
 
@@ -103,6 +105,16 @@ public class LevelUpControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/levelUp/{levelUpId}", LEVEL_UP_ID)).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().json(expectedJsonOutput));
+    }
+
+    @Test
+    public void fetchLevelUpByCustomerId() throws Exception {
+
+        String expectedJsonOutput = mapper.writeValueAsString(SAVED_LEVEL_UP);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/levelUp/customerId/{customerId}", CUSTOMER_ID)).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().json(expectedJsonOutput));
     }
 }

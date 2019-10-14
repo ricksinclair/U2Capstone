@@ -4,6 +4,7 @@ import com.trilogy.cloudgamestorelevelupservice.dao.LevelUpDao;
 import com.trilogy.cloudgamestorelevelupservice.model.LevelUp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class ServiceLayer {
      * @param levelUp
      * @return
      */
+    @Transactional
     public LevelUp saveLevelUp(LevelUp levelUp) {
+
         return levelUpDao.addLevelUp(levelUp);
     }
 
@@ -59,6 +62,15 @@ public class ServiceLayer {
      */
     public void deleteLevelUp(int levelUpId) {
         levelUpDao.deleteLevelUp(levelUpId);
+    }
+
+    /**
+     * Retrieves one level up when passed a valid Level Up ID
+     * @param customerId
+     * @return
+     */
+    public LevelUp fetchLevelUpByCustomerId(int customerId) {
+        return levelUpDao.getLevelUpByCustomerId(customerId);
     }
 
 }

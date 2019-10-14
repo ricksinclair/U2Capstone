@@ -8,8 +8,8 @@ import java.util.Objects;
 public class InvoiceItem {
 
     private int invoiceItemId;
-    @Digits(integer = 11, fraction = 0)
-    @NotNull
+//    @Digits(integer = 11, fraction = 0)
+//    @NotNull
     private int invoiceId;
     @Digits(integer = 11, fraction = 0)
     @NotNull
@@ -17,8 +17,8 @@ public class InvoiceItem {
     @Digits(integer = 11, fraction = 0)
     @NotNull
     private int quantity;
-    @Digits(integer = 5, fraction = 5)
-    @NotNull
+//    @Digits(integer = 5, fraction = 5)
+//    @NotNull
     private BigDecimal unitPrice;
 
     public InvoiceItem() {
