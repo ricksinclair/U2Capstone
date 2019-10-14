@@ -1,4 +1,4 @@
-package com.trilogy.cloudgamestoreadmin.model;
+package com.trilogy.cloudgamestoreproductservice.model;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -111,4 +111,5 @@ public class InvoiceItem {
                 ", unitPrice=" + unitPrice +
                 '}';
     }
+
 }

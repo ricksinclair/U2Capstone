@@ -48,4 +48,11 @@ public class ProductController {
     public void deleteProduct(@PathVariable int productId){
         service.deleteProduct(productId);
     }
+
+
+    @RequestMapping(value = "/product/Invoice/{invoiceId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> getProductsByInvoiceId( @PathVariable int invoiceId){
+        return service.getProductsByInvoiceId(invoiceId);
+    }
 }
