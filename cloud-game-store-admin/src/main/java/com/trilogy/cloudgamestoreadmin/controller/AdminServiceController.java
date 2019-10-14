@@ -1,11 +1,7 @@
 package com.trilogy.cloudgamestoreadmin.controller;
 
 
-import ch.qos.logback.classic.filter.LevelFilter;
-import com.trilogy.cloudgamestoreadmin.model.Customer;
-import com.trilogy.cloudgamestoreadmin.model.Inventory;
-import com.trilogy.cloudgamestoreadmin.model.LevelUp;
-import com.trilogy.cloudgamestoreadmin.model.Product;
+import com.trilogy.cloudgamestoreadmin.model.*;
 import com.trilogy.cloudgamestoreadmin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -123,13 +119,82 @@ public class AdminServiceController {
 
     //INVENTORY ENDPOINTS
 
-//    @RequestMapping(value = "/inventory", method = RequestMethod.POST)
-//    @ResponseStatus(HttpStatus.CREATED)
-//
-//    public Inventory addInventory(@Valid @RequestBody Inventory inventory){
-//        service.
-//    }
-//}
+    @RequestMapping(value = "/inventory", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+
+    public Inventory addInventory(@Valid @RequestBody Inventory inventory) {
+        return service.addInventory(inventory);
+    }
+
+
+    @RequestMapping(value = "/inventory/{inventoryId}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public Inventory getInventory(@PathVariable int inventoryId) {
+        return service.getInventory(inventoryId);
+    }
+
+    @RequestMapping(value = "/inventory", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Inventory> getAllInventories() {
+
+        return service.getAllInventory();
+    }
+
+    @RequestMapping(value = "/inventory", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateInventory(@Valid @RequestBody Inventory inventory){
+        service.updateInventory(inventory);
+    }
+
+
+    @RequestMapping(value = "/inventory/{inventoryId}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteInventory(@PathVariable int inventoryId){
+        service.deleteInventory(inventoryId);
+    }
+
+
+    //INVOICE ENDPOINTS
+    @RequestMapping(value = "/invoice", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Invoice addInvoice(@Valid @RequestBody Invoice invoice) {
+
+        return service.addInvoice(invoice);
+    }
+
+    @RequestMapping(value = "/invoice/{invoiceId}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public Invoice getInvoice(@PathVariable int invoiceId){
+        return service.getInvoice(invoiceId);
+    }
+
+    @RequestMapping(value = "/invoice", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Invoice> getAllInvoices(){
+        return service.getAllInvoices();
+    }
+
+
+
+    @RequestMapping(value = "/invoice", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateInvoice(@Valid @RequestBody Invoice invoice){
+        service.updateInvoice(invoice);
+    }
+
+
+    @RequestMapping(value = "/invoice/{invoiceId}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteInvoice(@PathVariable int invoiceId){
+        service.deleteInvoice(invoiceId);
+    }
+
+
+
 
 }
+
+
+
+
 
