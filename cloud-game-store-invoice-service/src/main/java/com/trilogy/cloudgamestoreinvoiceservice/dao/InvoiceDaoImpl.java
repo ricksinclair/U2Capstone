@@ -29,6 +29,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
     private final String DELETE_INVOICE_SQL =
             "delete from invoice where invoice_id = ?";
 
+    private final String SELECT_ALL_INVOICES_BY_CUSTOMER_ID_SQL =
+            "select * from invoice where customer_id = ?";
+
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -79,5 +82,10 @@ public class InvoiceDaoImpl implements InvoiceDao {
     @Override
     public void deleteInvoice(int id) {
         jdbcTemplate.update(DELETE_INVOICE_SQL, id);
+    }
+
+    @Override
+    public List<Invoice> getAllInvoiceByCustomerId(int customerId) {
+        return jdbcTemplate.query(SELECT_ALL_INVOICES_BY_CUSTOMER_ID_SQL, this::mapRowToInvoice, customerId);
     }
 }

@@ -1,5 +1,14 @@
 package com.trilogy.cloudgamestoreinvoiceservice.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.Deserializers;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+import com.thoughtworks.xstream.converters.time.LocalDateConverter;
+import com.trilogy.cloudgamestoreinvoiceservice.util.serializers.LocalDateDeserializer;
+import com.trilogy.cloudgamestoreinvoiceservice.util.serializers.LocalDateSerializer;
+import javafx.util.converter.LocalDateStringConverter;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -12,6 +21,8 @@ public class Invoice {
     @NotNull
     private int customerId;
     @NotNull
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate purchaseDate;
 
     public Invoice() {

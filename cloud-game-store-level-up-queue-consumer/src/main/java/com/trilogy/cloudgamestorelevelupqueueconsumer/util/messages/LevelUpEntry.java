@@ -1,6 +1,12 @@
 package com.trilogy.cloudgamestorelevelupqueueconsumer.util.messages;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.trilogy.cloudgamestorelevelupqueueconsumer.model.LevelUp;
+import com.trilogy.cloudgamestorelevelupqueueconsumer.serializers.LocalDateSerializer;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -15,18 +21,34 @@ public class LevelUpEntry {
     @Digits(integer = 11, fraction = 0)
     @NotNull
     private int points;
-    private LocalDate memberDate;
+    private String memberDate;
 
     public LevelUpEntry() {
     }
 
-    public LevelUpEntry(@Digits(integer = 11, fraction = 0) @NotNull int customerId, @Digits(integer = 11, fraction = 0) @NotNull int points, LocalDate memberDate) {
-        this.customerId = customerId;
-        this.points = points;
-        this.memberDate = memberDate;
+    public LevelUpEntry(LevelUp levelUp) {
+        this.levelUpId = levelUp.getLevelUpId();
+        this.customerId = levelUp.getCustomerId();
+        this.memberDate = levelUp.getMemberDate().toString();
+        this.points = levelUp.getPoints();
     }
 
-    public LevelUpEntry(int levelUpId, @Digits(integer = 11, fraction = 0) @NotNull int customerId, @Digits(integer = 11, fraction = 0) @NotNull int points, LocalDate memberDate) {
+    public LevelUpEntry(int levelUpId) {
+        this.levelUpId = levelUpId;
+    }
+
+    public LevelUpEntry(int levelUpId, @Digits(integer = 11, fraction = 0) @NotNull int customerId) {
+        this.levelUpId = levelUpId;
+        this.customerId = customerId;
+    }
+
+    public LevelUpEntry(int levelUpId, @Digits(integer = 11, fraction = 0) @NotNull int customerId, @Digits(integer = 11, fraction = 0) @NotNull int points) {
+        this.levelUpId = levelUpId;
+        this.customerId = customerId;
+        this.points = points;
+    }
+
+    public LevelUpEntry(int levelUpId, @Digits(integer = 11, fraction = 0) @NotNull int customerId, @Digits(integer = 11, fraction = 0) @NotNull int points, String memberDate) {
         this.levelUpId = levelUpId;
         this.customerId = customerId;
         this.points = points;
@@ -57,11 +79,11 @@ public class LevelUpEntry {
         this.points = points;
     }
 
-    public LocalDate getMemberDate() {
+    public String getMemberDate() {
         return memberDate;
     }
 
-    public void setMemberDate(LocalDate memberDate) {
+    public void setMemberDate(String memberDate) {
         this.memberDate = memberDate;
     }
 

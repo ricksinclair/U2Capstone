@@ -18,8 +18,13 @@ public interface LevelUpClient {
     @ResponseStatus(HttpStatus.OK)
     void updateLevelUp(@RequestBody @Valid LevelUp levelUp);
 
-    //Circuit Breaker Pattern placeholder - Keep in mind LevelUp ID vs. Customer ID approach
+    //Circuit Breaker Pattern placeholder
     @GetMapping(value = "/levelUp/{levelUpId")
     @ResponseStatus(HttpStatus.OK)
-    LevelUp fetchLevelUp(@PathVariable int levelUpId);
+    @ResponseBody LevelUp fetchLevelUp(@PathVariable int levelUpId);
+
+    //Circuit Breaker pattern place holder
+    @GetMapping(value = "/levelUp/customerId/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody LevelUp fetchLevelUpByCustomerId(@PathVariable int customerId);
 }

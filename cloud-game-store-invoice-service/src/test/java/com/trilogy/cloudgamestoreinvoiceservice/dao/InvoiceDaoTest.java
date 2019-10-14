@@ -64,7 +64,7 @@ public class InvoiceDaoTest {
     }
 
     @Test
-    public void getAllInvoices() {
+    public void getAllInvoicesAndByCustomerId() {
         Invoice invoice = new Invoice();
         invoice.setCustomerId(1);
         invoice.setPurchaseDate(LocalDate.now());
@@ -80,6 +80,10 @@ public class InvoiceDaoTest {
 
         //Asserts second invoice is added to DB and getAll is working properly
         assertEquals(2, invoiceDao.getAllInvoices().size());
+
+        //Asserts get by customerID is working
+        assertEquals(1, invoiceDao.getAllInvoiceByCustomerId(1).size());
+        assertEquals(1, invoiceDao.getAllInvoiceByCustomerId(2).size());
     }
 
     @Test

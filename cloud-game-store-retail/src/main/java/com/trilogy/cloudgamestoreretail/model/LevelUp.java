@@ -1,5 +1,7 @@
 package com.trilogy.cloudgamestoreretail.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -13,6 +15,7 @@ public class LevelUp {
     @Digits(integer = 11, fraction = 0)
     @NotNull
     private int points;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate memberDate;
 
     public LevelUp() {

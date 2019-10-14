@@ -1,5 +1,7 @@
 package com.trilogy.cloudgamestorelevelupqueueconsumer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -35,7 +37,10 @@ public class CloudGameStoreLevelUpQueueConsumerApplication {
 
 	@Bean
 	public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
-		return new Jackson2JsonMessageConverter();
+		JavaTimeModule module = new JavaTimeModule();
+		ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
+		objectMapper.registerModule(module);
+		return new Jackson2JsonMessageConverter(objectMapper);
 	}
 
 	public static void main(String[] args) {
