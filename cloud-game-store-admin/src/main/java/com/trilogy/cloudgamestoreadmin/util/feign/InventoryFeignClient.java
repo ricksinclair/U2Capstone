@@ -30,4 +30,10 @@ public interface InventoryFeignClient {
     @DeleteMapping(value = "/inventory/{inventoryId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteInventory(@PathVariable int inventoryId);
+
+    @GetMapping(value = "/inventory/product/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    Inventory getInventoryByProductId(@PathVariable int productId);
+
+
 }

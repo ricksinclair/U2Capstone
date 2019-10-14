@@ -29,6 +29,9 @@ public class InventoryDaoImpl implements InventoryDao {
     private final String DELETE_INVENTORY_SQL =
             "delete from inventory where inventory_id = ?";
 
+    private final String SELECT_INVENTORY_BY_PRODUCT_SQL =
+            "select * from inventory where product_id = ?";
+
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -80,4 +83,14 @@ public class InventoryDaoImpl implements InventoryDao {
     public void deleteInventory(int inventoryId) {
         jdbcTemplate.update(DELETE_INVENTORY_SQL, inventoryId);
     }
+
+    @Override
+    public Inventory getInventoryByProductId(int productId) {
+        try {
+            return jdbcTemplate.queryForObject(SELECT_INVENTORY_BY_PRODUCT_SQL, this::mapRowToInventory, productId);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
+
