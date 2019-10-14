@@ -76,4 +76,20 @@ public class InventoryController {
     public void deleteInventory(@PathVariable int inventoryId) {
         serviceLayer.deleteInventory(inventoryId);
     }
+
+
+
+
+    /**
+     * Selects inventory when passed a a valid product ID
+     * @param productId
+     * @return
+     */
+
+    @GetMapping(value = "/inventory/product/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+
+    public Inventory getInventoryByProductId(@PathVariable int productId){
+        return serviceLayer.fetchInventoryByProduct(productId);
+    }
 }

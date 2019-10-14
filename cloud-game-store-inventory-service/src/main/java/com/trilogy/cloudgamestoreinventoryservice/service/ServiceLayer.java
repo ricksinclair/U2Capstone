@@ -53,4 +53,9 @@ public class ServiceLayer {
     public void deleteInventory(int inventoryId) {
         inventoryDao.deleteInventory(inventoryId);
     }
+
+
+    public Inventory fetchInventoryByProduct(int productId){
+        return inventoryDao.getInventoryByProductId(productId);
+    }
 }
