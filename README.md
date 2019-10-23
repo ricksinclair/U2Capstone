@@ -15,7 +15,6 @@ This project called for turning a monolithic gamestop-like application into one 
 - Spring Cloud Configuration Server and Client ☁️
 - Jackson XML/JSON databinder 📎
 - MySQL 🗄
-- Hibernate / JPA 🛌
 
 - CI/CD with Jenkins\
 ![Jenkins](https://wiki.jenkins.io/download/attachments/2916393/logo.png?version=1&modificationDate=1302753947000&api=v2)
