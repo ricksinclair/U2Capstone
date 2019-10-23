@@ -9,12 +9,12 @@ This project called for turning a monolithic gamestop-like application into one 
 
 - Spring Security 🔐
 - Eureka 💡
-- OpenFeign
+- OpenFeign 🔮
 - Hystrix ✂️
 - RabbitMQ/AMQP 🐰
 - Spring Boot 🥾
 - Spring Cloud Configuration Server and Client ☁️
-- Jackson XML/JSON databinder
+- Jackson XML/JSON databinder 📎
 - MySQL 🗄
 - Hibernate / JPA 🛌
 
